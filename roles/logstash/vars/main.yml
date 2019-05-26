@@ -1,0 +1,4 @@
+---
+# vars file for logstash
+Node.name: "gg-logtash-node"
+logstash_version: "6"

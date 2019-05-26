@@ -1,0 +1,25 @@
+---
+# tasks file for logstash
+- name: make data directory
+  file:
+    path: /data/logstash
+    owner: logstash
+    group: logstash
+    state: directory
+
+- name: Include OS Specific setup tasks
+  include_tasks: logstash{{ ansible_os_family }}.yml
+  become: true
+
+- include_tasks: config.yml
+  become: true
+
+- name: daemon_reload
+  systemd:
+    daemon_reload: yes
+
+- name: start logstash
+  service:
+    name: logstash
+    state: started
+    enabled: yes

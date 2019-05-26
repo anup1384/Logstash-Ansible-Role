@@ -1,0 +1,5 @@
+- hosts: logstash
+  user: ubuntu
+  roles:
+   - {role: logstash, tags: ['logstash']}
+  become: true
